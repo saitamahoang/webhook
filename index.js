@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 app.get('/getAppHash', (req, res) => {
 
     const today = new Date();
-    const milliseconds = 1664349382487;
+    const milliseconds = today.getMilliseconds();
 
     const mil = (milliseconds - (milliseconds % 300));
     console.log(mil);
