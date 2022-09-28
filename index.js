@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 80
+const port = 3000
 var SHA256 = require("crypto-js/sha256");
 var Base64 = require("crypto-js/enc-base64");
 
