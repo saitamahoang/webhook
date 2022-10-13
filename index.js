@@ -21,7 +21,15 @@ app.get('/getAppHash', (req, res) => {
     
 
     var hash = SHA256(text);
+    var a = Base64.stringify(hash);
+    console.log(a);
+    console.log( encodeURIComponent(a));
 res.send(hash.toString(Base64));
+  })
+
+  app.get('/log', (req, res) => {
+console.log(req.query.p);
+res.send(req.query.p);
   })
 
 app.listen(process.env.PORT || port, () => {
