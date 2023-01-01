@@ -3,10 +3,24 @@ const app = express();
 const port = 3000;
 var SHA256 = require("crypto-js/sha256");
 var Base64 = require("crypto-js/enc-base64");
+var bodyParser = require('body-parser');
 
+var notify;
 app.get('/', (req, res) => {
   res.send('OK')
 })
+
+
+app.post('/webhook', bodyParser.text(), (req, res) => {
+  console.log('hello');
+  console.log(req.body);
+  notify = req.body;
+  res.status(200).send('SENT');
+});
+
+app.get('/webhook', (req, res) => {
+  res.send(notify);
+});
 
 app.get('/getAppHash', (req, res) => {
 
