@@ -5,20 +5,30 @@ var SHA256 = require("crypto-js/sha256");
 var Base64 = require("crypto-js/enc-base64");
 var bodyParser = require('body-parser');
 
-var notify = "NO_DATA";
+
+const mapData = new Map();
 app.get('/', (req, res) => {
   res.send('OK')
 })
 
 
-app.post('/webhook', bodyParser.text(), (req, res) => {
+app.post('/:money/webhook', bodyParser.text(), (req, res) => {
   console.log(req.body);
-  notify = req.body + "_" + Date.now();
+  let notify = req.body + "_" + Date.now();
+  let typeMoney = req.params.money.toLowerCase();
+  mapData.set(typeMoney, notify);
   res.status(200).send('SENT');
 });
 
-app.get('/webhook', (req, res) => {
-  res.send(notify);
+app.get('/:money/webhook', (req, res) => {
+  let typeMoney = req.params.money.toLowerCase();
+  let notify = mapData.get(typeMoney);
+  if (notify) {
+    res.send(notify);
+  } else {
+    res.send("NO_DATA");
+  }
+  
 });
 
 app.get('/getAppHash', (req, res) => {
