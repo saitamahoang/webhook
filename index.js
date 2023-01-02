@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 app.post('/webhook', bodyParser.text(), (req, res) => {
   console.log(req.body);
-  notify = req.body;
+  notify = req.body + "_" + Date.now();
   res.status(200).send('SENT');
 });
 
