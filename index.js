@@ -13,9 +13,10 @@ app.get('/', (req, res) => {
 
 
 app.post('/:money/webhook', bodyParser.text(), (req, res) => {
-  console.log(req.body);
+  
   let notify = req.body + "_" + Date.now();
   let typeMoney = req.params.money.toLowerCase();
+  console.log(typeMoney + " " + req.body);
   mapData.set(typeMoney, notify);
   res.status(200).send('SENT');
 });
