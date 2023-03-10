@@ -12,18 +12,21 @@ app.get('/', (req, res) => {
 })
 
 
-app.post('/:money/webhook', bodyParser.text(), (req, res) => {
+app.post('/:money/:account/webhook', bodyParser.text(), (req, res) => {
   
-  let notify = req.body + "_" + Date.now();
+  let notify = (req.body + "_" + Date.now()).toUpperCase();
   let typeMoney = req.params.money.toLowerCase();
-  console.log(typeMoney + " " + req.body);
-  mapData.set(typeMoney, notify);
+  let account = req.params.account.toLowerCase();
+  var d = new Date(); 
+  console.log(d.toLocaleString() + " :" + typeMoney + " " + req.body);
+  mapData.set(account+typeMoney, notify);
   res.status(200).send('SENT');
 });
 
-app.get('/:money/webhook', (req, res) => {
+app.get('/:money/:account/webhook', (req, res) => {
   let typeMoney = req.params.money.toLowerCase();
-  let notify = mapData.get(typeMoney);
+  let account = req.params.account.toLowerCase();
+  let notify = mapData.get(typeMoney+account);
   if (notify) {
     res.send(notify);
   } else {
