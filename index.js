@@ -12,10 +12,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/demo', (req, res) => {
-  res.send('<html><meta name="zalo-platform-site-verification" content="R_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30" /> <head>DEMO</head><body><h1> 
-<a href="https://oauth.zaloapp.com/v4/permission?app_id=773839402756031775&redirect_uri=https://xuongmaytrachxa.com/callback&state=ZALO">
-	<span>THAM GIA NGAY</span>
-</a> </h1></body></html>')
+  res.send('<html><meta name="zalo-platform-site-verification" content="R_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30" /> <head>DEMO</head><body><h1><a href="https://oauth.zaloapp.com/v4/permission?app_id=773839402756031775&redirect_uri=https://xuongmaytrachxa.com/callback&state=ZALO"><span>THAM GIA NGAY</span></a> </h1></body></html>');
 })
 
 app.get('/callback', (req, res) => {
