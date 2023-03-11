@@ -17,7 +17,7 @@ app.get('/demo', (req, res) => {
 
 app.get('/callback', (req, res) => {
   let accessToken = req.query.code;
-  if (!accessToken) {
+  if (accessToken) {
     res.send('Token nè:' + accessToken);
   } else {
     res.send('<html><meta name="zalo-platform-site-verification" content="R_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30" /> <head>server Response</head><body><h1> This page was render direcly from the server <p>Hello there welcome to my website</p></h1></body></html>');
