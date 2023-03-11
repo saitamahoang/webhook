@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   res.send('OK')
 })
 app.get('/zalo_verifierR_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30.html', (req, res) => {
-  res.send('OK')
+  res.send('There Is No Limit To What You Can Accomplish Using Zalo!')
 })
 
 
