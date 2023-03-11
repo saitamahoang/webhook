@@ -10,6 +10,10 @@ const mapData = new Map();
 app.get('/', (req, res) => {
   res.send('OK')
 })
+app.get('/zalo_verifierR_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30.html', (req, res) => {
+  res.send('OK')
+})
+
 
 
 app.post('/:money/:account/webhook', bodyParser.text(), (req, res) => {
