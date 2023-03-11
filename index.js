@@ -14,6 +14,11 @@ app.get('/zalo_verifierR_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30.html', (req, res) => 
   res.send('There Is No Limit To What You Can Accomplish Using Zalo!')
 })
 
+app.get('/zalo_verifierEV_Y2ypQLoSggEnztRLZVpcsk53LnsqBC38.html', (req, res) => {
+  res.send('There Is No Limit To What You Can Accomplish Using Zalo!')
+})
+
+
 
 
 app.post('/:money/:account/webhook', bodyParser.text(), (req, res) => {
