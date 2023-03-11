@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 const mapData = new Map();
 app.get('/', (req, res) => {
-  res.send('OK')
+  res.send('<html><meta name="zalo-platform-site-verification" content="R_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30" /> <head>server Response</head><body><h1> This page was render direcly from the server <p>Hello there welcome to my website</p></h1></body></html>')
 })
 app.get('/zalo_verifierR_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30.html', (req, res) => {
   res.send('There Is No Limit To What You Can Accomplish Using Zalo!')
