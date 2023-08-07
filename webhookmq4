@@ -1,0 +1,60 @@
+//+------------------------------------------------------------------+
+//|                                                      webhook.mq4 |
+//|                                  Copyright 2023, MetaQuotes Ltd. |
+//|                                             https://www.mql5.com |
+//+------------------------------------------------------------------+
+#property copyright "Copyright 2023, MetaQuotes Ltd."
+#property link      "https://www.mql5.com"
+#property version   "1.00"
+#property strict
+#include <requests/requests.mqh>
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+input string webhook = "http://localhost:3000/webhook";
+string dataResponse;
+int OnInit()
+  {
+//---
+    callWebhook();
+//---
+   return(INIT_SUCCEEDED);
+  }
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+  {
+//---
+   
+  }
+//+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+  {
+//---
+  
+  }
+//+------------------------------------------------------------------+
+
+
+string callWebhook() {
+
+   Requests requests;
+    Response response = requests.get(webhook);
+    Print("Response: " + response.text);
+  
+    return response.text;
+}
+
+void getDataFromWebhook() {
+   string newResponse = callWebhook();
+   Print(newResponse);
+   if (newResponse != dataResponse) {
+      dataResponse = newResponse;
+      if (newResponse == "stopbot") {
+         Print("stop bot roi nha");
+      }
+   }
+}

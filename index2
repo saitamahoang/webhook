@@ -1,0 +1,83 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+var SHA256 = require("crypto-js/sha256");
+var Base64 = require("crypto-js/enc-base64");
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
+
+
+const mapData = new Map();
+let message = "";
+app.get('/', (req, res) => {
+  res.send('<html><meta name="zalo-platform-site-verification" content="R_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30" /> <head>server Response</head><body><h1> This page was render direcly from the server <p>Hello there welcome to my website</p></h1></body></html>')
+})
+
+app.get('/demo', (req, res) => {
+  res.send('<html><meta name="zalo-platform-site-verification" content="R_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30" /> <head>DEMO</head><body><h1><a href="https://oauth.zaloapp.com/v4/permission?app_id=773839402756031775&redirect_uri=https://xuongmaytrachxa.com/callback&state=ZALO"><span>THAM GIA NGAY</span></a> </h1></body></html>');
+})
+
+app.get('/callback', (req, res) => {
+  let accessToken = req.query.code;
+  if (accessToken) {
+    res.send('Token nè:' + accessToken);
+  } else {
+    res.send('<html><meta name="zalo-platform-site-verification" content="R_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30" /> <head>server Response</head><body><h1> This page was render direcly from the server <p>Hello there welcome to my website</p></h1></body></html>');
+  }
+})
+
+app.get('/zalo_verifierR_AZSAYD0YbAeuyzm8aLEZ-ubXxJnqD5C30.html', (req, res) => {
+  res.send('There Is No Limit To What You Can Accomplish Using Zalo!')
+})
+
+app.get('/zalo_verifierEV_Y2ypQLoSggEnztRLZVpcsk53LnsqBC38.html', (req, res) => {
+  res.send('There Is No Limit To What You Can Accomplish Using Zalo!')
+})
+
+
+
+
+app.post('/:money/:account/webhook', bodyParser.text(), (req, res) => {
+  
+  let notify = (req.body + "_" + Date.now()).toUpperCase();
+  let typeMoney = req.params.money.toLowerCase();
+  let account = req.params.account.toLowerCase();
+  var d = new Date(); 
+  console.log(d.toLocaleString() + " :" + typeMoney + " " + req.body);
+  mapData.set(account+typeMoney, notify);
+  res.status(200).send('SENT');
+});
+
+app.get('/:money/:account/webhook', (req, res) => {
+  let typeMoney = req.params.money.toLowerCase();
+  let account = req.params.account.toLowerCase();
+  let notify = mapData.get(typeMoney+account);
+  if (notify) {
+    res.send(notify);
+  } else {
+    res.send("NO_DATA");
+  }
+  
+});
+app.get('/webhook', (req, res) => {
+ console.log("request");
+  res.status(200).send("hello");
+    })
+
+
+
+  app.post('/telegram/webhook/5900557559:AAGxUGZx2ttrBZTJxMf4O0zdHMXrePoC8i4', jsonParser, (req, res) => {
+    console.log("request bot");
+    message = req.body.message.text;
+    res.status(200).send("OK");
+      })
+
+      app.get('/telegram/webhook',  (req, res) => {
+   
+    
+        res.status(200);
+          })
+
+app.listen(process.env.PORT || port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
